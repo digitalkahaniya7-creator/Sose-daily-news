@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All SOSE News</title>
+
+<style>
+body{
+background:black;
+color:#00ff99;
+font-family:Courier New;
+text-align:center;
+}
+
+.newsBox{
+border:1px solid #00ff99;
+margin:10px;
+padding:10px;
+}
+
+img{
+max-width:100%;
+margin-top:5px;
+}
+a{color:#00ff99;}
+</style>
+</head>
+
+<body>
+
+<h1>💀All Posted News💀</h1>
+
+<div id="newsContainer"></div>
+
+<br>
+<a href="index.html">⬅ Back to Post Page</a>
+
+<script>
+let allNews = JSON.parse(localStorage.getItem("soseNews")) || [];
+
+let container = document.getElementById("newsContainer");
+
+if(allNews.length === 0){
+container.innerHTML = "<p>No News Posted Yet 😢</p>";
+}else{
+
+allNews.reverse().forEach(function(news){
+
+let box = document.createElement("div");
+box.className="newsBox";
+
+box.innerHTML = `
+<h3>${news.headline || ""}</h3>
+<p>${news.description || ""}</p>
+${news.image ? "<img src='"+news.image+"'>" : ""}
+`;
+
+container.appendChild(box);
+
+});
+
+}
+</script>
+
+</body>
+</html>
